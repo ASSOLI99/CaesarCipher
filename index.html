@@ -1,0 +1,145 @@
+<!-- 
+    Name: Abdullah Omar Assoli 
+    Id:145923 
+    Caesar Cipher Encryption
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher Encryption</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            padding: 8px;
+            width: 250px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        output {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 10px;
+            color: #007bff;
+        }
+
+        hr {
+            margin: 30px 0;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        a {
+            color: #004da0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .input-container,
+        .shift-container {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .shift-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1>Caesar Cipher Encryption</h1>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 5px;">
+<div>
+    <label for="textInput">Enter Text:</label>
+    <input type="text" id="textInput" placeholder="Enter text...">
+</div>
+<div>
+    <label for="shiftLength">Shift Length:</label>
+    <input type="range" id="shiftLength" min="1" max="25" value="3">
+    <output for="shiftLength" id="shiftValue">3</output>
+</div>
+</div>
+    <button onclick="encrypt()">Encrypt</button>
+
+    <h2>Encrypted Text:</h2>
+    <output id="encryptedText"></output>
+    <hr>
+    <h2>By <a href="https://www.linkedin.com/in/abdullah-assoli-65674a224/">Abdullah Assoli</a> </h2>
+    <script>
+        function encrypt() {
+            const inputText = document.getElementById('textInput').value;
+            const shiftLength = parseInt(document.getElementById('shiftLength').value);
+            const encryptedText = caesarCipher(inputText, shiftLength);
+            document.getElementById('encryptedText').textContent = encryptedText;
+        }
+        function caesarCipher(str, shift) {
+            return str.replace(/[a-zA-Z]/g, function (char) {
+                const isUpperCase = char === char.toUpperCase();
+                const charCode = char.charCodeAt(0) + shift;
+                const baseCharCode = isUpperCase ? 'A'.charCodeAt(0) : 'a'.charCodeAt(0);
+                return String.fromCharCode((charCode - baseCharCode) % 26 + baseCharCode);
+            });
+        }
+
+        document.getElementById('shiftLength').addEventListener('input', function () {
+            document.getElementById('shiftValue').textContent = this.value;
+        });
+    </script>
+</body>
+</html>
+<!-- 
+    Name: Abdullah Omar Assoli 
+    Id:145923 
+    Caesar Cipher Encryption
+-->
